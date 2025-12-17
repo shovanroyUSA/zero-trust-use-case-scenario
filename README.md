@@ -85,19 +85,19 @@ Zero Trust use cases
 - Data Access Policy enforces granular permissions per resource type
 - Policy Enforcement Point blocks access to resources outside user's role scope
 
-## Scenario 6: The "Time-based Attack" or Temporal Context Violation
-**Attack Vector:** Valid credentials used outside normal business context  
-**Variable:** Time, Location, and Access Patterns  
+## Scenario 6: The "Session Hijacking" or Token Manipulation Attack
+**Attack Vector:** Attacker intercepts or steals valid session tokens to impersonate user  
+**Variable:** Session Integrity and Continuous Authentication  
 
 **Attack Simulation:**
-- **Baseline:** Database administrator accesses production systems during business hours
-- **Attack:** Same credentials used at 3 AM from home network for bulk data export
+- **Baseline:** User logs in normally, receives session token, accesses resources for 30 minutes
+- **Attack:** Attacker captures session token and attempts to use it from different browser/device
 
-**Traditional Outcome:** Allowed (valid credentials and VPN access)  
-**Zero Trust Outcome:** Step-up authentication and enhanced monitoring  
+**Traditional Outcome:** Allowed (valid session token, no re-authentication required)  
+**Zero Trust Outcome:** Session invalidated due to context mismatch  
 
 **Technical Implementation:**
-- SIEM System evaluates temporal and contextual risk factors
-- Trust Score adjusted for unusual time/location combinations
-- Policy Enforcement Point requires additional verification for high-risk contexts
-- Enhanced audit logging for out-of-hours administrative access
+- Policy Enforcement Point continuously validates session context (IP, device fingerprint, user-agent)
+- Monitoring System detects simultaneous sessions from different contexts
+- Identity Provider implements session binding to device characteristics
+- Policy Engine requires re-authentication when session context changes
