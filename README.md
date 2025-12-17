@@ -1,7 +1,5 @@
 # zero-trust-use-case-scenario
 Zero Trust use cases
-# Zero Trust Attack Simulation Scenarios
-
 ## Scenario 1: The "Stolen Credential" or Contextual Anomaly
 **Attack Vector:** Attacker gains valid username/password credentials and attempts to log in  
 **Variable:** Source Context (IP Geolocation or Device Fingerprint)  
